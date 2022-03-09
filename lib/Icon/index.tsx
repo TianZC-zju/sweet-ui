@@ -1,6 +1,5 @@
 import * as React from 'react';
-import '../assets/icons/wechat.svg';
-import '../assets/icons/alipay.svg';
+import './importAllIcons';
 
 
 interface IconType {
