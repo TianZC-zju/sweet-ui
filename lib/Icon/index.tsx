@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './importAllIcons';
+import './icon.scss'
 
 
 interface IconType {
@@ -8,10 +9,9 @@ interface IconType {
 
 const Icon: React.FC<IconType> =({icon})=>{
 
-    return<span>
-        <svg>
+    return<svg className='sweetui-icon'>
             <use xlinkHref={ `#${icon}` }></use>
         </svg>
-    </span>
+
 }
 export default Icon;
