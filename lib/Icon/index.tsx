@@ -8,15 +8,13 @@ interface IconType extends React.SVGAttributes<SVGSVGElement>{
     icon: string
 }
 
-const Icon: React.FC<IconType> =(props)=>{
-
-    const {className, ...restProps} = props
+const Icon: React.FC<IconType> =
+    ({className,icon, ...restProps})=>{
     return<svg
         className={classNames('sweetui-icon', className)}
         {...restProps}
     >
-            <use xlinkHref={ `#${props.icon}` }></use>
+            <use xlinkHref={ `#${icon}` }></use>
         </svg>
-
 }
 export default Icon;
