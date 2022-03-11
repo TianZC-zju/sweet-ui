@@ -3,14 +3,17 @@ import './importAllIcons';
 import './icon.scss'
 
 
-interface IconType {
+interface IconType extends React.SVGAttributes<SVGSVGElement>{
     icon: string
 }
 
-const Icon: React.FC<IconType> =({icon})=>{
+const Icon: React.FC<IconType> =(props)=>{
 
-    return<svg className='sweetui-icon'>
-            <use xlinkHref={ `#${icon}` }></use>
+    return<svg
+        className='sweetui-icon'
+        {...props}
+    >
+            <use xlinkHref={ `#${props.icon}` }></use>
         </svg>
 
 }
