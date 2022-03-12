@@ -8,7 +8,14 @@ const DialogExample = () => {
     return (
         <div>
             <button onClick={()=>setDialogVisible(!dialogVisible)}>按钮</button>
-            <Dialog visible={dialogVisible}>
+            <Dialog
+                visible={dialogVisible}
+                buttons={[
+                    <button onClick={()=>setDialogVisible(false)}>ok</button>,
+                    <button  onClick={()=>setDialogVisible(false)}>cancle</button>
+                ]}
+
+            >
                 <div>hi</div>
             </Dialog>
         </div>

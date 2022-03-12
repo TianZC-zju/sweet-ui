@@ -1,18 +1,19 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, ReactElement} from 'react';
 import './Dialog.scss';
 import Icon from '../Icon';
 import {scopedClassMaker} from '../utils';
 
 
 interface PropsType {
-    visible: boolean
+    visible: boolean;
+    buttons?: Array<ReactElement>;
 }
 
 const scopedClass = scopedClassMaker('sweetui-dialog')
 const sc = scopedClass;
 
 const Dialog: React.FC<PropsType> =
-    ({visible, children}) => {
+    ({visible, children,buttons}) => {
         return visible ?
             <Fragment>
                 <div className={sc('mask')}></div>
@@ -25,7 +26,9 @@ const Dialog: React.FC<PropsType> =
                         {children}
                     </main>
                     <footer className={sc('footer')}>
-                        footer
+                        {buttons && buttons.map((button, index) =>
+                            React.cloneElement(button, {key: index})
+                        )}
                     </footer>
                 </div>
             </Fragment> :
