@@ -8,7 +8,9 @@ const DialogExample = () => {
     return (
         <div>
             <button onClick={()=>setDialogVisible(!dialogVisible)}>按钮</button>
-            <Dialog visible={dialogVisible}/>
+            <Dialog visible={dialogVisible}>
+                <div>hi</div>
+            </Dialog>
         </div>
     );
 };
