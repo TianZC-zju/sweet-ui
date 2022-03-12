@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Icon from './Icon';
+import DialogExample from './Dialog/Dialog.example';
 
 
 const fn =(e: React.MouseEvent<SVGSVGElement>)=>{
@@ -14,6 +15,7 @@ ReactDOM.render(
               onMouseMove={()=>{console.log('move');}}
         />
         <Icon icon='alipay'/>
+        <DialogExample/>
     </div>
     ,
     document.getElementById('root')
