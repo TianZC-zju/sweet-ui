@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, {Fragment, MouseEventHandler, ReactElement} from 'react';
+import React, {Fragment, MouseEventHandler, ReactElement, ReactNode} from 'react';
 import './Dialog.scss';
 import Icon from '../Icon';
 import {scopedClassMaker} from '../utils';
@@ -55,5 +55,27 @@ const Dialog: React.FC<PropsType> =
                 ReactDOM.createPortal(dialogDom,document.body)
             )
     };
+
+export const alert = (content: ReactNode)  => {
+    const close = () => {
+        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+        ReactDOM.unmountComponentAtNode(div);
+        div.remove();
+    };
+    const component =
+        <Dialog
+            visible={true}
+            onClose={() => {
+                close();
+            }}>
+            {content}
+        </Dialog>;
+    const div = document.createElement('div');
+    document.body.append(div);
+    ReactDOM.render(component, div);
+    return close;
+};
+
+
 
 export default Dialog;
