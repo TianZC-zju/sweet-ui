@@ -1,62 +1,58 @@
+import React, {Fragment, ReactElement, ReactNode} from 'react';
 import ReactDOM from 'react-dom';
-import React, {Fragment, MouseEventHandler, ReactElement, ReactNode} from 'react';
-import './Dialog.scss';
-import Icon from '../Icon';
+import './dialog.scss';
 import {scopedClassMaker} from '../utils';
+import Icon from '../Icon';
 
-
-interface PropsType {
+interface Props {
     visible: boolean;
-    onClose: MouseEventHandler;
     buttons?: Array<ReactElement>;
+    onClose: React.MouseEventHandler;
     closeOnClickMask?: boolean;
 }
 
-const scopedClass = scopedClassMaker('sweetui-dialog')
+const scopedClass = scopedClassMaker('fui-dialog');
 const sc = scopedClass;
-
-const Dialog: React.FC<PropsType> =
-    ({
-         visible,
-         children,
-         buttons,
-        onClose,
-        closeOnClickMask,
-    }) => {
-        const closeOnMask: MouseEventHandler = (e)=>{
-            if(closeOnClickMask){
-                onClose(e)
-            }
-        }
-
-
-
-        const dialogDom =  visible ?
-            <Fragment>
-                <div className={sc('mask')} onClick={closeOnMask}> </div>
-                <div className={sc()}>
-                    <div className={sc('close')} onClick={onClose}>
-                        <Icon icon='close' />
-                    </div>
-                    <header className={sc('header')}>标题</header>
-                    <main className={sc('main')}>
-                        {children}
-                    </main>
-                    <footer className={sc('footer')}>
-                        {buttons && buttons.map((button, index) =>
-                            React.cloneElement(button, {key: index})
-                        )}
-                    </footer>
-                </div>
-            </Fragment> :
-            null;
-
-            return(
-                ReactDOM.createPortal(dialogDom,document.body)
-            )
+const Dialog: React.FunctionComponent<Props> = (props) => {
+    const onClickClose: React.MouseEventHandler = (e) => {
+        props.onClose(e);
     };
-
-export const alert = (content: ReactNode)  => {
+    const onClickMask: React.MouseEventHandler = (e) => {
+        if (props.closeOnClickMask) {
+            props.onClose(e);
+        }
+    };
+    const result = props.visible &&
+        <Fragment>
+            <div className={sc('mask')} onClick={onClickMask}>
+            </div>
+            <div className={sc('')}>
+                <div className={sc('close')} onClick={onClickClose}>
+                    <Icon icon="close"/>
+                </div>
+                <header className={sc('header')}>
+                    提示
+                </header>
+                <main className={sc('main')}>
+                    {props.children}
+                </main>
+                {props.buttons && props.buttons.length > 0 &&
+                <footer className={sc('footer')}>
+                    {props.buttons && props.buttons.map((button, index) =>
+                        React.cloneElement(button, {key: index})
+                    )}
+                </footer>
+                }
+            </div>
+        </Fragment>;
+    return (
+        ReactDOM.createPortal(result, document.body)
+    );
+};
+Dialog.defaultProps = {
+    closeOnClickMask: false
+};
+const modal = (content: ReactNode, buttons?: Array<ReactElement>, afterClose?: () => void) => {
     const close = () => {
         ReactDOM.render(React.cloneElement(component, {visible: false}), div);
         ReactDOM.unmountComponentAtNode(div);
@@ -65,8 +61,10 @@ export const alert = (content: ReactNode)  => {
     const component =
         <Dialog
             visible={true}
+            buttons={buttons}
             onClose={() => {
                 close();
+                afterClose && afterClose();
             }}>
             {content}
         </Dialog>;
@@ -75,31 +73,24 @@ export const alert = (content: ReactNode)  => {
     ReactDOM.render(component, div);
     return close;
 };
-
-export const confirm = (content: ReactNode, buttons?: Array<ReactElement>)  => {
-    const close = () => {
-        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
-    };
-    const component =
-        <Dialog
-            visible={true}
-            onClose={() => {
-                close();
-            }}
-            buttons={buttons}
-        >
-            {content}
-        </Dialog>;
-    const div = document.createElement('div');
-    document.body.append(div);
-    ReactDOM.render(component, div);
-    return close;
+const alert = (content: string) => {
+    const button = <button onClick={() => close()}>OK</button>;
+    const close = modal(content, [button]);
 };
-
-
-
-
-
+const confirm = (content: string, yes?: () => void, no?: () => void) => {
+    const onYes = () => {
+        close();
+        yes && yes();
+    };
+    const onNo = () => {
+        close();
+        no && no();
+    };
+    const buttons = [
+        <button onClick={onYes}>yes</button>,
+        <button onClick={onNo}>no</button>
+    ];
+    const close = modal(content, buttons, no);
+};
+export {alert, confirm, modal};
 export default Dialog;
