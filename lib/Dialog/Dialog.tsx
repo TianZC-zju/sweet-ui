@@ -76,6 +76,30 @@ export const alert = (content: ReactNode)  => {
     return close;
 };
 
+export const confirm = (content: ReactNode, buttons: Array<ReactElement>)  => {
+    const close = () => {
+        ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+        ReactDOM.unmountComponentAtNode(div);
+        div.remove();
+    };
+    const component =
+        <Dialog
+            visible={true}
+            onClose={() => {
+                close();
+            }}
+            buttons={buttons}
+        >
+            {content}
+        </Dialog>;
+    const div = document.createElement('div');
+    document.body.append(div);
+    ReactDOM.render(component, div);
+    return close;
+};
+
+
+
 
 
 export default Dialog;
