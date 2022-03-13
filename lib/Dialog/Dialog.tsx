@@ -76,7 +76,7 @@ export const alert = (content: ReactNode)  => {
     return close;
 };
 
-export const confirm = (content: ReactNode, buttons: Array<ReactElement>)  => {
+export const confirm = (content: ReactNode, buttons?: Array<ReactElement>)  => {
     const close = () => {
         ReactDOM.render(React.cloneElement(component, {visible: false}), div);
         ReactDOM.unmountComponentAtNode(div);
