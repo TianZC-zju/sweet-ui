@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import React, {Fragment, MouseEventHandler, ReactElement} from 'react';
 import './Dialog.scss';
 import Icon from '../Icon';
@@ -28,7 +29,9 @@ const Dialog: React.FC<PropsType> =
             }
         }
 
-        return visible ?
+
+
+        const dialogDom =  visible ?
             <Fragment>
                 <div className={sc('mask')} onClick={closeOnMask}> </div>
                 <div className={sc()}>
@@ -47,6 +50,10 @@ const Dialog: React.FC<PropsType> =
                 </div>
             </Fragment> :
             null;
+
+            return(
+                ReactDOM.createPortal(dialogDom,document.body)
+            )
     };
 
 export default Dialog;
