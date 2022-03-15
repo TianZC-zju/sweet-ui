@@ -10,14 +10,7 @@ const DialogExample = () => {
         <Fragment>
             <button onClick={() => alert('1')}>alert</button>
             <div>-------</div>
-            <button onClick={() => {
-                const closeConfirm = confirm(
-                'content',
-                [
-                    <button onClick={()=>closeConfirm()}>ok</button>,
-                    <button onClick={()=>closeConfirm()}>cancle</button>
-                ],
-            )}}>
+            <button onClick={() => {confirm('content')}}>
                 confirm
             </button>
             <div>-------</div>
