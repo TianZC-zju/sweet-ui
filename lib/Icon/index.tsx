@@ -10,11 +10,11 @@ interface IconType extends React.SVGAttributes<SVGSVGElement>{
 
 const Icon: React.FC<IconType> =
     ({className,icon, ...restProps})=>{
-    return<svg
-        className={classnames('sweetui-icon',className)}
-        {...restProps}
-    >
+        return<svg
+            className={classnames('sweetui-icon',className)}
+            {...restProps}
+        >
             <use xlinkHref={ `#${icon}` }></use>
         </svg>
-}
+    }
 export default Icon;
