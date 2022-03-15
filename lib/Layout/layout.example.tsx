@@ -7,7 +7,7 @@ interface propsType {
 
 const LayoutExample: React.FC<propsType> = () => {
     return (
-        <Layout>
+        <Layout className='wm'>
             <Header/>
             <Content/>
             <Footer/>
