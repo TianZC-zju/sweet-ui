@@ -1,12 +1,26 @@
 import * as React from 'react';
+import {HTMLAttributes} from 'react';
+import {scopedClassMaker} from '../../../utils';
+import './sider.scss'
+import classNames from 'classnames';
 
-interface propsType {
+interface propsType extends HTMLAttributes<HTMLElement>{
 
 }
 
-const Sider: React.FC<propsType> = () => {
+const sc = scopedClassMaker('sweetui-layout');
+
+const Sider: React.FC<propsType> =
+    ({
+         children,
+         className,
+         ...restProps
+     }) => {
     return (
-        <div>Sider</div>
+        <div
+            className={classNames(className, sc('sider'))}
+            {...restProps}
+        >Sider</div>
     );
 };
 export default Sider;

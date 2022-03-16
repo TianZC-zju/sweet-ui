@@ -1,12 +1,26 @@
 import * as React from 'react';
+import {HTMLAttributes} from 'react';
+import {scopedClassMaker} from '../../../utils';
+import classNames from 'classnames';
+import './content.scss'
 
-interface propsType {
+
+interface propsType extends HTMLAttributes<HTMLElement> {
 
 }
 
-const Content: React.FC<propsType> = () => {
-    return (
-        <div>Content</div>
-    );
-};
+const sc = scopedClassMaker('sweetui-layout');
+const Content: React.FC<propsType> =
+    ({
+         children,
+         className,
+         ...restProps
+     }) => {
+        return (
+            <div
+                className={classNames(className, sc('content'))}
+                {...restProps}
+            >Content</div>
+        );
+    };
 export default Content;

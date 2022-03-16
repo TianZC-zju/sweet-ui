@@ -1,32 +1,44 @@
 import * as React from 'react';
-import {HTMLAttributes } from 'react';
+import {HTMLAttributes, ReactElement } from 'react';
 import classNames from 'classnames';
 import Header from './components/Header/header';
 import Content from './components/Content/content';
 import Footer from './components/Footer/footer';
 import {scopedClassMaker} from '../utils';
-import './layout.scss'
+import './layout.scss';
+import Sider from './components/Sider/sider';
 
-interface propsType extends HTMLAttributes<HTMLElement>{
-
+interface propsType extends HTMLAttributes<HTMLElement> {
+    children: ReactElement | Array<ReactElement>
 }
-const sc = scopedClassMaker('sweetui-layout')
+
+const sc = scopedClassMaker('sweetui-layout');
 
 const Layout: React.FC<propsType> =
-    ({children,
+    ({
+         children,
          className,
-         ...restProps}) => {
-    return (
-        <div
-            className={classNames(className,sc())}
-            {...restProps}
-        >
-            Layout
-            {children}
-        </div>
-    );
-};
+         ...restProps
+     }) => {
+        let hasSider = false;
+       if((children as Array<ReactElement>).length){
+           (children as Array<ReactElement>).forEach(item =>{
+               if(item.type === Sider){
+                   hasSider = true;
+               }
+           })
+       }
 
-export {Header, Content, Footer}
+        return (
+            <div
+                className={classNames(className, sc(), hasSider && sc('has-sider'))}
+                {...restProps}
+            >
+                {children}
+            </div>
+        );
+    };
+
+export {Header, Content, Footer, Sider};
 
 export default Layout;
