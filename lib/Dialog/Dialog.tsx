@@ -11,7 +11,7 @@ interface Props {
     closeOnClickMask?: boolean;
 }
 
-const scopedClass = scopedClassMaker('fui-dialog');
+const scopedClass = scopedClassMaker('sweetui-dialog');
 const sc = scopedClass;
 const Dialog: React.FunctionComponent<Props> = (props) => {
     const onClickClose: React.MouseEventHandler = (e) => {
