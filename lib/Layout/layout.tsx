@@ -20,14 +20,12 @@ const Layout: React.FC<propsType> =
          className,
          ...restProps
      }) => {
-        let hasSider = false;
-       if((children as Array<ReactElement>).length){
-           (children as Array<ReactElement>).forEach(item =>{
-               if(item.type === Sider){
-                   hasSider = true;
-               }
-           })
-       }
+        const childrenAsArray = (children as Array<ReactElement>)
+        const hasSider = childrenAsArray.length &&
+            childrenAsArray.reduce(
+                (previousValue, currentNode) =>
+                    previousValue|| currentNode.type === Sider
+                , false )
 
         return (
             <div

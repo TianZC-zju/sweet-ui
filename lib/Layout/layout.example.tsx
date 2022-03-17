@@ -34,6 +34,16 @@ const LayoutExample: React.FC<propsType> = () => {
                 </Layout>
                 <Footer style={{height: '50px'}}/>
             </Layout>
+
+            <h1>------第四个例子------</h1>
+            <Layout style={{height: '500px'}}>
+                <Sider>Sider</Sider>
+                <Layout>
+                    <Header style={{height: '50px'}}/>
+                    <Content>Content</Content>
+                    <Footer style={{height: '50px'}}/>
+                </Layout>
+            </Layout>
         </div>
     );
 };
