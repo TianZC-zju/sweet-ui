@@ -20,7 +20,7 @@ const Footer: React.FC<propsType> =
             <div
                 className={classNames(className, sc('footer'))}
                 {...restProps}
-            >Footer</div>
+            >{children}</div>
         );
     };
 export default Footer;

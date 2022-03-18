@@ -20,7 +20,7 @@ const Header: React.FC<propsType> =
             <div
                 className={classNames(className, sc('header'))}
                 {...restProps}
-            >Header</div>
+            >{children}</div>
         );
     };
 export default Header;

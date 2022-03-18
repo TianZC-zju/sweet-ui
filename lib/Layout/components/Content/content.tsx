@@ -20,7 +20,7 @@ const Content: React.FC<propsType> =
             <div
                 className={classNames(className, sc('content'))}
                 {...restProps}
-            >Content</div>
+            >{children}</div>
         );
     };
 export default Content;

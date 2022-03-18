@@ -20,7 +20,7 @@ const Sider: React.FC<propsType> =
         <div
             className={classNames(className, sc('sider'))}
             {...restProps}
-        >Sider</div>
+        >{children}</div>
     );
 };
 export default Sider;
