@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Routes,Route, NavLink} from 'react-router-dom';
 import LayoutExample from './Layout/layout.example';
-import IconExample from './Icon/icon.example';
 import DialogExample from './Dialog/Dialog.example';
 import Layout, {Content, Footer, Header, Sider} from './Layout/layout';
 import logoCandy from './assets/logo/logoCandy.png'
 import logoText from './assets/logo/logoText.png'
 import './index.scss'
+import IconDemo from './Icon/icon.demo';
 
 
 ReactDOM.render(
@@ -36,7 +36,7 @@ ReactDOM.render(
                 </Sider>
                 <Content className="site-main">
                     <Routes>
-                        <Route path="/icon" element={<IconExample/>}/>
+                        <Route path="/icon" element={<IconDemo/>}/>
                         <Route path="/dialog" element={<DialogExample/>}/>
                         <Route path="/layout" element={<LayoutExample/>}/>
                     </Routes>
