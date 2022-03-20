@@ -21,7 +21,7 @@ ReactDOM.render(
             </Header>
             <Layout>
                 <Sider className="site-aside">
-                    <h2>组件</h2>
+                    <h2>组件2333</h2>
                     <ul>
                         <li>
                             <NavLink to="/icon">Icon</NavLink>
