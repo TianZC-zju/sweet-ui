@@ -2,7 +2,7 @@ import React, {Fragment, ReactElement, ReactNode} from 'react';
 import ReactDOM from 'react-dom';
 import './dialog.scss';
 import {scopedClassMaker} from '../utils';
-import Icon from '../Icon';
+// import Icon from '../Icon';
 
 interface Props {
     visible: boolean;
@@ -14,9 +14,9 @@ interface Props {
 const scopedClass = scopedClassMaker('sweetui-dialog');
 const sc = scopedClass;
 const Dialog: React.FunctionComponent<Props> = (props) => {
-    const onClickClose: React.MouseEventHandler = (e) => {
-        props.onClose(e);
-    };
+    // const onClickClose: React.MouseEventHandler = (e) => {
+    //     props.onClose(e);
+    // };
     const onClickMask: React.MouseEventHandler = (e) => {
         if (props.closeOnClickMask) {
             props.onClose(e);
@@ -27,12 +27,16 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
             <div className={sc('mask')} onClick={onClickMask}>
             </div>
             <div className={sc('')}>
-                <div className={sc('close')} onClick={onClickClose}>
-                    <Icon icon="close"/>
-                </div>
+                {/*<div className={sc('close')} onClick={onClickClose}>*/}
+                {/*    <Icon icon="close"/>*/}
+                {/*</div>*/}
                 <header className={sc('header')}>
-                    提示
+                    Set dimensions
+                    <div className={sc('header-desc')}>
+                        Fil in required dimension info
+                    </div>
                 </header>
+
                 <main className={sc('main')}>
                     {props.children}
                 </main>
@@ -87,8 +91,8 @@ const confirm = (content: string, yes?: () => void, no?: () => void) => {
         no && no();
     };
     const buttons = [
-        <button onClick={onYes}>yes</button>,
-        <button onClick={onNo}>no</button>
+        <button onClick={onNo} className={sc('footer-button')}>Cancle</button>,
+        <button onClick={onYes} className={sc('footer-button-active')}>Save</button>,
     ];
     const close = modal(content, buttons, no);
 };
