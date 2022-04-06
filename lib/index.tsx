@@ -8,6 +8,7 @@ import logoCandy from './assets/logo/logoCandy.png'
 import logoText from './assets/logo/logoText.png'
 import './index.scss'
 import IconDemo from './Icon/icon.demo';
+import ButtonExample from './Button/button.example';
 
 
 ReactDOM.render(
@@ -32,6 +33,9 @@ ReactDOM.render(
                         <li>
                             <NavLink to="/layout">布局</NavLink>
                         </li>
+                        <li>
+                            <NavLink to="/button">按钮</NavLink>
+                        </li>
                     </ul>
                 </Sider>
                 <Content className="site-main">
@@ -39,6 +43,7 @@ ReactDOM.render(
                         <Route path="/icon" element={<IconDemo/>}/>
                         <Route path="/dialog" element={<DialogExample/>}/>
                         <Route path="/layout" element={<LayoutExample/>}/>
+                        <Route path="/button" element={<ButtonExample/>}/>
                     </Routes>
                 </Content>
             </Layout>

@@ -1,0 +1,54 @@
+$primaryColor:#6D27E7;
+
+.sweetui-btn{
+  border: 1px red solid;
+  line-height: 1.5715;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: 0 2px #00000004;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.645,.045,.355,1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  //min-height: 32px;
+  height: auto;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+  color: #000000d9;
+  border-color: #d9d9d9;
+  background: #fff;
+
+  &-text{
+    color: #000000d9;
+    border-color: transparent;
+    background: 0 0;
+    box-shadow: none;
+  }
+
+  &-primary{
+    color: #fff;
+    border-color: $primaryColor;
+    background: $primaryColor;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px #0000000b;
+    //padding: 13px auto ;
+    border-radius: 13px;
+    min-width: 74px;
+    min-height: 40px;
+  }
+
+  &-primary:hover{
+    border-color: #501AB2;
+    background: #501AB2;
+  }
+
+}
