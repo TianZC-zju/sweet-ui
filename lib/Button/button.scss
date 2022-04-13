@@ -45,7 +45,9 @@ $primaryColor:#6D27E7;
     min-width: 74px;
     min-height: 40px;
   }
-
+  &-block{
+    width: 100%;
+  }
   &-primary:hover{
     border-color: #501AB2;
     background: #501AB2;

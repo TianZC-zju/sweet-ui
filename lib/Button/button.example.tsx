@@ -11,6 +11,8 @@ const ButtonExample: React.FC<propsType> = () => {
             <Button type='text'>按钮</Button>
             <div>-------</div>
             <Button type='primary'>按钮</Button>
+
+            <Button block={true}>100%</Button>
         </div>
     );
 };
